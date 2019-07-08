@@ -1,8 +1,6 @@
-require 'rubygems'
-require 'selenium-webdriver'
+require "./main.rb"
 
-driver = Selenium::WebDriver.for :chrome
-driver.get "https://the-internet.herokuapp.com/"
+driver, wait = Main.start
 element = driver.find_element(:link_text, "Key Presses").click
 
 element = driver.find_element(:id, "target")

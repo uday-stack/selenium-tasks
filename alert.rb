@@ -1,10 +1,6 @@
-require 'rubygems'
-require 'selenium-webdriver'
+require "./main.rb"
 
-driver = Selenium::WebDriver.for :chrome
-driver.get 'https://the-internet.herokuapp.com'
-
-wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+driver, wait = Main.start
 driver.find_element(:link_text, "JavaScript Alerts").click
 
 begin

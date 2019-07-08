@@ -1,12 +1,7 @@
-require 'rubygems'
-require 'selenium-webdriver'
+require "./main.rb"
 
-driver = Selenium::WebDriver.for :chrome
-driver.get "https://the-internet.herokuapp.com/"
-
-
+driver, wait = Main.start
 driver.find_element(:link_text, "Hovers").click
-wait = Selenium::WebDriver::Wait.new(:timeout => 10)
 
 begin
 	element = driver.find_elements(:class,'figure')
