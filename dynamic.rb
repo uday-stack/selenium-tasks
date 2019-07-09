@@ -1,22 +1,27 @@
 require "./main.rb"
 
+EXAMPLE_1 = "Example 1"
+EXAMPLE_2 = "Example 2"
+BUTTON = "#start button"
+HELLO = "#finish h4"
+
 driver, wait = Main.start
 driver.find_element(:link_text, "Dynamic Loading").click
 
 begin
-	driver.find_element(:partial_link_text, "Example 1").click
-	driver.find_element(:css, "#start button").click
-	first_hello = wait.until { driver.find_element(:css, "#finish h4") }
+	driver.find_element(:partial_link_text, EXAMPLE_1).click
+	driver.find_element(:css, BUTTON).click
+	first_hello = wait.until { driver.find_element(:css, HELLO) }
 	puts first_hello.text
 	driver.navigate.back
-	driver.find_element(:partial_link_text, "Example 2").click
-	driver.find_element(:css, "#start button").click
-	second_hello = wait.until { driver.find_element(:css, "#finish h4") }
+	driver.find_element(:partial_link_text, EXAMPLE_2).click
+	driver.find_element(:css, BUTTON).click
+	second_hello = wait.until { driver.find_element(:css, HELLO) }
 	puts second_hello.text
 rescue Exception => ex
-	puts "Handling error"
+	puts Main::ERROR_MSG
 	puts ex.message
 ensure
-	puts "Quitting driver"
+	puts Main::DRIVER_QUIT
 	driver.quit
 end

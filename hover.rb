@@ -1,10 +1,12 @@
 require "./main.rb"
 
+FIGURE = "figure"
+
 driver, wait = Main.start
 driver.find_element(:link_text, "Hovers").click
 
 begin
-	element = driver.find_elements(:class,'figure')
+	element = driver.find_elements(:class, FIGURE)
 end
 
 element.each { |item| 
